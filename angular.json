@@ -25,14 +25,6 @@
               "tsConfig": "projects/doroteati/mia-loading/tsconfig.lib.prod.json"
             }
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/doroteati/mia-loading/src/test.ts",
-            "tsConfig": "projects/doroteati/mia-loading/tsconfig.spec.json",
-            "karmaConfig": "projects/doroteati/mia-loading/karma.conf.js"
-          }
         }
       }
     },
@@ -48,41 +40,25 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/example",
             "index": "projects/example/src/index.html",
-            "main": "projects/example/src/main.ts",
-            "polyfills": "projects/example/src/polyfills.ts",
+            "browser": "projects/example/src/main.ts",
             "tsConfig": "projects/example/tsconfig.app.json",
             "assets": [
               "projects/example/src/favicon.ico",
               "projects/example/src/assets"
             ],
             "styles": ["projects/example/src/styles.scss"],
-            "scripts": [],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/example/src/environments/environment.ts",
-                  "with": "projects/example/src/environments/environment.prod.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -95,9 +71,13 @@
                   "maximumError": "10kb"
                 }
               ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true
             }
           },
-          "defaultConfiguration": ""
+          "defaultConfiguration": "development"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -115,38 +95,11 @@
           "options": {
             "buildTarget": "example:build"
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/example/src/test.ts",
-            "polyfills": "projects/example/src/polyfills.ts",
-            "tsConfig": "projects/example/tsconfig.spec.json",
-            "karmaConfig": "projects/example/karma.conf.js",
-            "assets": [
-              "projects/example/src/favicon.ico",
-              "projects/example/src/assets"
-            ],
-            "styles": ["projects/example/src/styles.scss"],
-            "scripts": []
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/example/e2e/protractor.conf.js",
-            "devServerTarget": "example:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "example:serve:production"
-            }
-          }
         }
       }
     }
   },
   "cli": {
-    "analytics": "2a3d92ff-fcec-443c-847d-99a0e004868d"
+    "analytics": false
   }
 }

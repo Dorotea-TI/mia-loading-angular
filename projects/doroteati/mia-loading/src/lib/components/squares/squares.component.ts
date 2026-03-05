@@ -1,18 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
   selector: 'mia-loading-squares',
+  standalone: true,
+  imports: [NgClass, NgStyle],
   templateUrl: './squares.component.html',
-  styleUrls: ['./squares.component.scss']
+  styleUrl: './squares.component.scss'
 })
-export class SquaresComponent implements OnInit {
-
-  @Input() isFullPage:boolean = false;
+export class SquaresComponent {
+  @Input() isFullPage: boolean = false;
   @Input() color: string = '#00C1D4';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
